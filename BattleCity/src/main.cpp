@@ -2,21 +2,48 @@
 #include <GLFW/glfw3.h>
 #include <iostream>
 
+int g_WIndowSizeX = 640;
+int g_WIndowSizeY = 480;
+
+void glfwWindowSizeCallback(GLFWwindow* window, int width, int height)
+{
+    g_WIndowSizeX = width;
+    g_WIndowSizeY = height;
+    glViewport(0, 0, g_WIndowSizeX, g_WIndowSizeY);
+}
+
+void glfwKeyCallback(GLFWwindow* window, int key, int scancode, int action, int mode)
+{
+    if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
+    {
+        glfwSetWindowShouldClose(window, GL_TRUE);
+    }
+}
+
 int main(void)
 {
-    GLFWwindow* window;
-
     /* Initialize the library */
-    if (!glfwInit())
+    if (!glfwInit()) 
+    {
+        std::cout << "glfwInit failed!" << std::endl;
         return -1;
+    }
+        
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
+    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
     /* Create a windowed mode window and its OpenGL context */
-    window = glfwCreateWindow(640, 480, "Hello World", NULL, NULL);
+    GLFWwindow* window = glfwCreateWindow(g_WIndowSizeX, g_WIndowSizeY, "Battle city", nullptr, nullptr);
     if (!window)
     {
+        std::cout << "glfwCreateWindow failed!" << std::endl;
         glfwTerminate();
         return -1;
     }
+
+    glfwSetWindowSizeCallback(window, glfwWindowSizeCallback);
+    glfwSetKeyCallback(window, glfwKeyCallback);
 
     /* Make the window's context current */
     glfwMakeContextCurrent(window);
@@ -27,8 +54,9 @@ int main(void)
         return -1;
     }
 
-    std::cout << "OpenGL " << GLVersion.major << GLVersion.minor << std::endl;
-    glClearColor(1, 1, 1, 1);
+    std::cout << "Renderer: " << glGetString(GL_RENDERER) << std::endl;
+    std::cout << "OpenGL version: " << glGetString(GL_VERSION) << std::endl;
+    glClearColor(0, 1, 1, 1);
 
     /* Loop until the user closes the window */
     while (!glfwWindowShouldClose(window))
