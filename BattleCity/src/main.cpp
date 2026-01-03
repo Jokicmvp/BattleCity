@@ -2,6 +2,26 @@
 #include <GLFW/glfw3.h>
 #include <iostream>
 
+GLfloat point[] = {
+    0.0f, 0.5f, 0.0f,
+    0.5f, -0.5f, 0.0f,
+    -0.5f, -0.5f, 0.0f
+};
+
+GLfloat colors[] = {
+    1.0f, 0.0f, 0.0f,
+    0.0f, 1.0f, 0.0f,
+    0.0f, 0.0f, 1.0f
+};
+
+const char* vertex_shader = 
+"layout(location = 0) in vec3 vertex_position"
+"layout(location = 1) in vec3 color_position"
+"out vec3 color"
+"int main() {"
+"   "
+
+
 int g_WIndowSizeX = 640;
 int g_WIndowSizeY = 480;
 
