@@ -3,7 +3,11 @@ cmake_minimum_required(VERSION 4.2.1 FATAL_ERROR)
 set(PROJECT_NAME BattleCity)
 project(${PROJECT_NAME})
 
-add_executable(${PROJECT_NAME} src/main.cpp)
+add_executable(${PROJECT_NAME} 
+	src/main.cpp
+	src/Renderer/ShaderProgram.h
+	src/Renderer/ShaderProgram.cpp
+)
 
 #option(BUILD_SHARED_LIBS "Build shared libraries" OFF)
 #option(GLFW_BUILD_TESTS "Build the GLFW test programs" ${GLFW_STANDALONE})
