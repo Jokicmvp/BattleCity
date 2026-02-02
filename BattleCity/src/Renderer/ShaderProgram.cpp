@@ -35,7 +35,6 @@ namespace Renderer
 		}
 		else {
 			m_isCompiled = true;
-
 		}
 		glDeleteShader(vertexShaderID);
 		glDeleteShader(fragmentShaderID);
@@ -59,7 +58,7 @@ namespace Renderer
 		}
 		return true;
 
-	};
+	}
 
 	ShaderProgram::~ShaderProgram()
 	{
@@ -80,7 +79,7 @@ namespace Renderer
 		shaderProgram.m_ID = 0;
 		shaderProgram.m_isCompiled = false;
 		return *this;
-	};
+	}
 
 	ShaderProgram::ShaderProgram(ShaderProgram&& shaderProgram)
 	{
